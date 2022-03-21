@@ -8,8 +8,7 @@ from pathlib import Path
 import time
 import yaml
 
-logging.basicConfig(format="%(levelname)s: %(message)s", level=logging.INFO)
-
+logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 
 def main(config) -> None:
     influx_conf = config["influx"]
