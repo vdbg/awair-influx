@@ -1,0 +1,15 @@
+awair:
+  maxhours: 24               # Max amount of historical data to import. Awair APIs fail if bigger than 24 hours
+  token: super-secret-token  # Can be requested here: https://developer.getawair.com/
+  records: 3                 # To avoid throttling, don't call if there's fewer than records*5 minutes of data to download 
+
+influx:
+  url: http://localhost:8086  
+  bucket: "Environment"      # Name of bucket to use in influx db
+  measurement: "air_quality" # Name of measurement. Can keep as is
+  token: super-secret-token
+  org: "your org in influx"
+
+main:
+  logverbosity: INFO # By increasing level of verbosity: FATAL, ERROR, WARNING, INFO, DEBUG 
+  loop_seconds: 420  # How often to check the influx to see if the last uploaded record is older than awair.records * 5 minutes 

@@ -1,0 +1,3 @@
+influxdb-client[ciso]
+python_awair
+pyyaml
