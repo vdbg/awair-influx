@@ -1,5 +1,7 @@
 # Awair to InfluxDB
 
+Allows for importing [Awair](https://www.getawair.com/index.html) data to [InfluxDB](https://www.influxdata.com/).
+
 ## Requirements
 
 - A device, capable of running either Docker containers or Python e.g., [Rasbpian](https://www.raspbian.org/) or Windows
