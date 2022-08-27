@@ -66,10 +66,14 @@ class AwairConnector:
                 data = await device.air_data_five_minute(fahrenheit=False, from_date=from_time, to_date=to_time, limit=limit)
 
                 for datum in data:
-                    sensorsDict = {sensor: value for sensor, value in datum.sensors.items()}
+                    # Explicit float cast: sometimes awair will return data as integer instead of float which will
+                    # cause error "field type conflict" when importing back to influxdb
+
+                    sensorsDict = {sensor: (float)(value) for sensor, value in datum.sensors.items()}
                     if datum.score == 0:
                         continue  # gaps in reported metrics result in score 0 instead of missing record
-                    sensorsDict["score"] = datum.score
+
+                    sensorsDict["score"] = (float)(datum.score)
                     records.append({"measurement": measurement, "tags": {"host": device.uuid}, "fields": sensorsDict, "time": datum.timestamp})
 
             return records
