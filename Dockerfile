@@ -1,14 +1,7 @@
 # Alpine for smaller size
 FROM python:3.9-alpine
 
-# Create a system account hubibot.hubibot
 RUN addgroup -S awair && adduser -S awair -G awair
-# Non-alpine equivalent of above:
-#RUN groupadd -r awair && useradd -r -m -g awair awair
-
-# One of the Python packages has a dependency on gcc to install
-# https://github.com/closeio/ciso8601/issues/98
-RUN apk add --no-cache build-base
 
 USER awair
 
@@ -22,10 +15,10 @@ ENV PYTHONUNBUFFERED 1
 
 COPY requirements.txt     /app
 
-RUN pip install --no-cache-dir --upgrade pip && \
+RUN pip install --no-cache-dir --upgrade pip --no-warn-script-location && \
     pip install --no-cache-dir -r ./requirements.txt --no-warn-script-location 
 
-COPY *.py              /app/
+COPY *.py                 /app/
 COPY template.config.yaml /app/
 
 ENTRYPOINT python main.py
