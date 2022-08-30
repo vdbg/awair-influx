@@ -4,8 +4,8 @@ Allows for importing [Awair](https://www.getawair.com/index.html) data to [Influ
 
 ## Requirements
 
-- A device, capable of running either Docker containers or Python e.g., [Rasbpian](https://www.raspbian.org/) or Windows
-- [InfluxDB](https://en.wikipedia.org/wiki/InfluxDB) v2 installed and accessible from the device running the import 
+- A device, capable of running either Docker containers or Python e.g., [Raspbian](https://www.raspbian.org/) or Windows
+- [InfluxDB](https://en.wikipedia.org/wiki/InfluxDB) v2 installed and accessible from the device running the import
 - Bucket created on the influxDB and token available
 
 ## Setup
@@ -15,11 +15,11 @@ Choose one of these 3 methods.
 ### Using pre-built Docker image
 
 1. `touch config.yaml`
-2. This will fail due to malformed config.yaml. That's intentional :)  
+2. This will fail due to malformed config.yaml. That's intentional :)
    ``sudo docker run --name my-awair-influx -v "`pwd`/config.yaml:/app/config.yaml" vdbg/awair-influx``
 3. `sudo docker cp my-awair-influx:/app/template.config.yaml config.yaml`
 4. Edit `config.yaml` by following the instructions in the file
-5. `sudo docker start my-awair-influx -i`  
+5. `sudo docker start my-awair-influx -i`
   This will display logging on the command window allowing for rapid troubleshooting. `Ctrl-C` to stop the container. Note: config.yaml is automatically reloaded.
 7. When done testing the config:
   * `sudo docker container rm my-awair-influx`
@@ -31,11 +31,11 @@ Choose one of these 3 methods.
 1. `git clone https://github.com/vdbg/awair-influx.git`
 2. `sudo docker build -t awair-influx-image awair-influx`
 3. `cd awair-influx`
-4. `cp template.config.yaml config.yaml` 
+4. `cp template.config.yaml config.yaml`
 5. Edit `config.yaml` by following the instructions in the file
-6. Test run: ``sudo docker run --name my-awair-influx -v "`pwd`/config.yaml:/app/config.yaml" awair-influx-image``  
+6. Test run: ``sudo docker run --name my-awair-influx -v "`pwd`/config.yaml:/app/config.yaml" awair-influx-image``
    This will display logging on the command window allowing for rapid troubleshooting. `Ctrl-C` to stop the container. Note: config.yaml is automatically reloaded.
-7. If container needs to be restarted for testing: `sudo docker start my-awair-influx -i` 
+7. If container needs to be restarted for testing: `sudo docker start my-awair-influx -i`
 8. When done testing the config:
   * `sudo docker container rm my-awair-influx`
   * ``sudo docker run -d --name my-awair-influx -v "`pwd`/config.yaml:/app/config.yaml" --restart=always --memory=100m awair-influx-image``
@@ -51,7 +51,7 @@ To install:
 2. `cd awair-influx`
 3. `cp template.config.yaml config.yaml`
 4. Edit `config.yaml` by following the instructions in the file
-5. `pip3 install -r requirements.txt` 
+5. `pip3 install -r requirements.txt`
 6. Run the program:
   * Interactive mode: `python3 main.py`
   * Shorter: `.\main.py` (Windows) or `./main.py` (any other OS).
