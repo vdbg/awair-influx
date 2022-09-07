@@ -8,7 +8,7 @@ from pathlib import Path
 import time
 import yaml
 
-logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
+logging.basicConfig(format="%(asctime)s - %(levelname)s - %(message)s", level=logging.INFO)
 
 def main(config) -> None:
     influx_conf = config["influx"]
@@ -31,19 +31,20 @@ def main(config) -> None:
         logging.error(f"Exception while querying records")
         logging.exception(e)
 
+CONFIG_FILE = "config.yaml"
 
 try:
     while True:
-        with open(Path(__file__).with_name("config.yaml")) as config_file:
+        with open(Path(__file__).with_name(CONFIG_FILE)) as config_file:
 
             config = yaml.safe_load(config_file)
 
             if not config:
-                raise ValueError("Invalid config.yaml. See template.config.yaml.")
+                raise ValueError(f"Invalid {CONFIG_FILE}. See template.{CONFIG_FILE}.")
 
             for name in {"influx", "awair", "main"}:
                 if name not in config:
-                    raise ValueError(f"Invalid config.yaml: missing section {name}.")
+                    raise ValueError(f"Invalid {CONFIG_FILE}: missing section {name}.")
 
             main_conf = config["main"]
             logging.getLogger().setLevel(logging.getLevelName(main_conf["logverbosity"]))
@@ -53,7 +54,7 @@ try:
             time.sleep(main_conf["loop_seconds"])
 
 except FileNotFoundError as e:
-    logging.error("Missing config.yaml file.")
+    logging.error(f"Missing {e.filename}.")
     exit(2)
 
 except Exception as e:
