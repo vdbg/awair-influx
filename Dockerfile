@@ -7,16 +7,18 @@ USER awair
 
 WORKDIR /app
 
-# set environment variables
-# PYTHONDONTWRITEBYTECODE: Prevents Python from writing pyc files to disc
-# PYTHONUNBUFFERED: Prevents Python from buffering stdout and stderr
+# Prevents Python from writing pyc files to disc
 ENV PYTHONDONTWRITEBYTECODE 1
+# Prevents Python from buffering stdout and stderr
 ENV PYTHONUNBUFFERED 1
+# Install location of upgraded pip
+ENV PATH /home/awair/.local/bin:$PATH
+
+RUN pip install --no-cache-dir --disable-pip-version-check --upgrade pip
 
 COPY requirements.txt     /app
 
-RUN pip install --no-cache-dir --upgrade pip --no-warn-script-location && \
-    pip install --no-cache-dir -r ./requirements.txt --no-warn-script-location 
+RUN pip install --no-cache-dir -r ./requirements.txt
 
 COPY *.py                 /app/
 COPY template.config.yaml /app/
