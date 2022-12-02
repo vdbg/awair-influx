@@ -2,11 +2,18 @@
 
 Allows for importing [Awair](https://www.getawair.com/index.html) data to [InfluxDB](https://www.influxdata.com/).
 
+**WARNING**: these scrpipts can no longer be tested/supported as Awair
+[intentionally bricked](https://www.reddit.com/r/Awair/comments/y7i5ku/awair_discontinues_support_for_v1_devices/)
+my only Awair device.
+
 ## Requirements
 
 - A device, capable of running either Docker containers or Python e.g., [Raspbian](https://www.raspbian.org/) or Windows
 - [InfluxDB](https://en.wikipedia.org/wiki/InfluxDB) v2 installed and accessible from the device running the import
 - Bucket created on the influxDB and token available
+- An Awair device that is not prevented from uploading data to the cloud.
+  Recommend contacting [Awair's support](https://support.getawair.com/hc/en-us) to inquire about their forced obsolescence
+  policy before purchasing a new device.
 
 ## Setup
 
