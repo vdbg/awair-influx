@@ -2,7 +2,7 @@
 
 Allows for importing [Awair](https://www.getawair.com/index.html) data to [InfluxDB](https://www.influxdata.com/).
 
-**WARNING**: these scrpipts can no longer be tested/supported as Awair
+**WARNING**: these scripts can no longer be tested/supported as Awair
 [intentionally bricked](https://www.reddit.com/r/Awair/comments/y7i5ku/awair_discontinues_support_for_v1_devices/)
 my only Awair device.
 
